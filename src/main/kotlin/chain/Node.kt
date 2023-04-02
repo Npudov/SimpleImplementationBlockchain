@@ -50,7 +50,7 @@ class Node {
                 )
             }
         }
-        return if (currentHash.ValidateHash()) {
+        return if (currentHash.validateHash()) {
             stepBlock?.also { lastBlock = it; stepBlock = null}
         } else {
             null
@@ -63,7 +63,7 @@ class Node {
     }
 
     fun isValidBlock(block: Block): Boolean {
-        return block.currentHash.ValidateHash() && block.index == lastBlock.index + 1
+        return block.currentHash.validateHash() && block.index == lastBlock.index + 1
     }
 
     private fun getHashBlock(ind: Long, lastHash: String, data: String, nonce: Long): String {
@@ -84,7 +84,7 @@ class Node {
         return sb.toString()
     }
 
-    private fun String.ValidateHash(): Boolean {
+    private fun String.validateHash(): Boolean {
         return this.takeLast(4) == "0000"
     }
 
