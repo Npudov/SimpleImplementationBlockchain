@@ -5,14 +5,14 @@ import kotlin.random.Random.Default.nextInt
 import java.security.MessageDigest
 
 class Node {
-    val LENGTH_HASH = 256
-    val NONCE_DEF_VALUE = 0L
+    private val LENGTH_HASH = 256
+    private val NONCE_DEF_VALUE = 0L
 
     private val genBlock = Block(
         index=0,
-        data="data",
-        previousHash="prev",
-        currentHash="asdfas5df765asd7f6tas76df98a7s9d8f7",
+        data="asba",
+        previousHash="last",
+        currentHash="09a4b2272c88fa4fe0b6742f030f516430c16c672799162f1b425471ecdb996c",
         nonce=NONCE_DEF_VALUE,
         isActual=false
     )
