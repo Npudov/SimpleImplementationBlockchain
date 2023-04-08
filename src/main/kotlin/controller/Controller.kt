@@ -8,7 +8,7 @@ import processes.Proc
 import processes.isHighLevelProc
 
 object Controller {
-    const val INTERVAL = 50L
+    const val INTERVAL = 10L
 
 
     fun blockReceivedController(block: Block, node: Node): Boolean {
