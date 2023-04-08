@@ -1,5 +1,7 @@
 package chain
 
+import processes.Information
+
 data class Block(
     val index: Long,
     val data: String,
@@ -7,4 +9,4 @@ data class Block(
     val currentHash: String,
     val nonce: Long,
     val isActual: Boolean = false
-)
+): Information

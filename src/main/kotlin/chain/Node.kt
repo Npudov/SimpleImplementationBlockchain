@@ -20,6 +20,9 @@ class Node {
     private var lastBlock: Block = genBlock
     var stepBlock: Block? = null
 
+    fun getLastBlock(): Block {
+        return lastBlock
+    }
 
     fun attemptMakeCorrectBlock(): Block? {
         lateinit var currentHash: String
@@ -62,7 +65,7 @@ class Node {
         stepBlock = null
     }
 
-    fun isValidBlock(block: Block): Boolean {
+    fun isCorrectBlock(block: Block): Boolean {
         return block.currentHash.validateHash() && block.index == lastBlock.index + 1
     }
 
