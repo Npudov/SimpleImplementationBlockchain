@@ -4,11 +4,11 @@ import java.lang.StringBuilder
 import kotlin.random.Random.Default.nextInt
 import java.security.MessageDigest
 
-class Node {
+open class Node {
     private val LENGTH_HASH = 256
     private val NONCE_DEF_VALUE = 0L
 
-    private val genBlock = Block(
+    private var genBlock = Block(
         index=0,
         data="asba",
         previousHash="last",
@@ -19,6 +19,21 @@ class Node {
 
     private var lastBlock: Block = genBlock
     var stepBlock: Block? = null
+
+    fun getGenBlock(): Block {
+        return genBlock
+    }
+
+    fun setGenBlock(index:Long, data: String, prevHash: String, curHash: String, nonce: Long, isAct: Boolean) {
+        genBlock = Block(
+            index=index,
+            data=data,
+            previousHash=prevHash,
+            currentHash=curHash,
+            nonce=nonce,
+            isActual=isAct
+        )
+    }
 
     fun getLastBlock(): Block {
         return lastBlock
@@ -33,24 +48,25 @@ class Node {
             val nonce = NONCE_DEF_VALUE
             currentHash = getHashBlock(ind=index, lastHash=previousHash, data=data, nonce=nonce)
             stepBlock = Block(
-                index=index,
-                data=data,
-                previousHash=previousHash,
+                index=lastBlock.index + 1,
+                data=getBlockData(),
+                previousHash=lastBlock.currentHash,
                 currentHash=currentHash,
-                nonce=nonce
+                nonce=NONCE_DEF_VALUE
             )
         } else {
             stepBlock?.let {
                 currentHash = getHashBlock(
                     ind=it.index, lastHash=it.previousHash, data=it.data, nonce=it.nonce + 1
                 )
-                stepBlock = Block(
+                stepBlock = it.copy(currentHash=currentHash, nonce=it.nonce+1)
+                /*stepBlock = Block(
                     index=it.index,
                     data=it.data,
                     previousHash=it.previousHash,
                     currentHash=currentHash,
                     nonce=it.nonce + 1
-                )
+                )*/
             }
         }
         return if (currentHash.validateHash()) {
@@ -69,11 +85,11 @@ class Node {
         return block.currentHash.validateHash() && block.index == lastBlock.index + 1
     }
 
-    private fun getHashBlock(ind: Long, lastHash: String, data: String, nonce: Long): String {
+    protected fun getHashBlock(ind: Long, lastHash: String, data: String, nonce: Long): String {
         return (ind.toString() + lastHash + data + nonce.toString()).toSHA()
     }
 
-    private fun getBlockData(): String {
+    protected fun getBlockData(): String {
         return generateRandomData(LENGTH_HASH)
     }
 
@@ -97,6 +113,6 @@ class Node {
     }
 
     private fun ByteArray.toHex(): String {
-        return joinToString("") {"02x".format(it)}
+        return joinToString("") {"%02x".format(it)}
     }
 }

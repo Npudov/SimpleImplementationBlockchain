@@ -9,7 +9,7 @@ import java.net.ServerSocket
 import java.net.Socket
 import java.net.SocketException
 
-data class Proc(val procName: String, val port: Int) {
+open class Proc(val procName: String, val port: Int) {
     private lateinit var serverSocket: ServerSocket
     private lateinit var clientSocket: Socket
 
