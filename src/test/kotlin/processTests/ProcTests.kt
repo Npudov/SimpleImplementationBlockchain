@@ -24,9 +24,9 @@ class ProcTests {
 
     @BeforeEach
     fun install() {
-        firstProc = Proc(procName=getProcName(FIRST_PORT), port=FIRST_PORT)
-        secondProc = Proc(procName=getProcName(SECOND_PORT), port=SECOND_PORT)
-        thirdProc = Proc(procName=getProcName(THIRD_PORT), port=THIRD_PORT)
+        firstProc = Proc(procName=getProcName(FIRST_PORT), getNumberNode(FIRST_PORT), port=FIRST_PORT)
+        secondProc = Proc(procName=getProcName(SECOND_PORT), getNumberNode(SECOND_PORT), port=SECOND_PORT)
+        thirdProc = Proc(procName=getProcName(THIRD_PORT), getNumberNode(THIRD_PORT), port=THIRD_PORT)
 
         firstProc.startProcesses()
         secondProc.startProcesses()

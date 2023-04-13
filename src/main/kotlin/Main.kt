@@ -13,7 +13,7 @@ import controller.Controller.stepBlockController
 fun main(args: Array<String>) {
     val port = args[0].toInt()
 
-    val proc = Proc("Process on node with number ${getNumberNode(port)}", getNumberNode(port))
+    val proc = Proc("Process on node ${getNumberNode(port)}", getNumberNode(port), port)
 
     proc.startProcesses()
 
