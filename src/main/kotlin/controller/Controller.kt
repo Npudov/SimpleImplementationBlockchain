@@ -3,6 +3,7 @@ package controller
 import BlockJsonObject
 import chain.Block
 import chain.Node
+import processes.Connector
 import processes.Connector.sendInfoToAllProc
 import processes.Proc
 import processes.isHighLevelProc

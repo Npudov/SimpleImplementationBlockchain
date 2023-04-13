@@ -6,5 +6,5 @@ RUN ["gradle", "clean", "MyBigJar"]
 
 FROM openjdk:17-oracle
 WORKDIR /simpleimplementationblockchain
-COPY --from=builder /builder/build/libs/SimpleImplemetationBlockchain-1.0.jar .
+COPY --from=builder /builder/build/libs/SimpleImplementationBlockchain-1.0.jar .
 ENTRYPOINT ["java", "-jar", "SimpleImplementationBlockchain-1.0.jar"]

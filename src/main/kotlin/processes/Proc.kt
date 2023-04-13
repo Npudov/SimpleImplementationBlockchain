@@ -9,7 +9,7 @@ import java.net.ServerSocket
 import java.net.Socket
 import java.net.SocketException
 
-open class Proc(val procName: String, val port: Int) {
+open class Proc(val procName: String, val numberNode: Int, val port: Int) {
     private lateinit var serverSocket: ServerSocket
     private lateinit var clientSocket: Socket
 
@@ -19,6 +19,8 @@ open class Proc(val procName: String, val port: Int) {
     private val listClientSockets: MutableList<Socket> = mutableListOf()
     private val listClientThreads: MutableList<Thread> = mutableListOf()
 
+
+    val groupSockets = mutableMapOf<Int, Socket>()
 
     fun startProcesses() {
         //open server socket for listen incoming connections from clients

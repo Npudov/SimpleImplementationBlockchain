@@ -21,6 +21,6 @@ fun getGroupPorts(port: Int): List<Int> {
 }
 
 fun isHighLevelProc(proc: Proc):Boolean {
-    return proc.procName.split(" ")[1].toInt() == getNumberNode(FIRST_PORT)
+    return proc.numberNode == getNumberNode(FIRST_PORT)
 }
 
