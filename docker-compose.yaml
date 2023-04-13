@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  firstNode:
+    image: npudovdocker/simple-implementation-blockchain
+    container_name: firstNode
+    network_mode: host
+    command: "8001"
+
+  secondNode:
+    image: npudovdocker/simple-implementation-blockchain
+    container_name: secondNode
+    network_mode: host
+    command: "8002"
+
+  thirdNode:
+    image: npudovdocker/simple-implementation-blockchain
+    container_name: thirdNode
+    network_mode: host
+    command: "8003"
